@@ -17,7 +17,7 @@ int main(void)
     for (int i = 0; i < input; i++)
     {
         // drawing out left blanks.
-        for (int j = 0; j < input - i; j++)
+        for (int j = 0; j < input - i - 1; j++)
         {
             printf(" ");
         }
