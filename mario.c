@@ -33,11 +33,6 @@ int main(void)
         {
             printf("#");
         }
-        //drawing out right blanks, although that is very unnecessary.
-        for (int n = 0; n < input + i; n++)
-        {
-            printf(" ");
-        }
         // our trusty line-break.
         printf("\n");
     }
