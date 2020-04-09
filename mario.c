@@ -36,5 +36,4 @@ int main(void)
         // our trusty line-break.
         printf("\n");
     }
-    printf("Look! There's the princess!\n");
 }
