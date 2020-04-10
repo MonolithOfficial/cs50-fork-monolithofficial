@@ -20,8 +20,8 @@ int main(void)
     }
 
     // printf("First two digits of %ld are %ld\n", n, n2);
-    printf("%d\n", luhnAlg(n));
-    printf("Length: %i\n", length);
+    // printf("%d\n", luhnAlg(n));
+    // printf("Length: %i\n", length);
     if (((n2 == 34 || n2 == 37) && length == 15) && luhnAlg(n)){
         printf("AMEX\n");
     }
