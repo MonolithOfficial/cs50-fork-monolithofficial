@@ -41,7 +41,7 @@ bool luhnAlg(int cardNum){
     int numberOfDigits = length;
     int sum = 0; 
     bool isSecondDigit = false;
-    for (int i = numberOfDigits - 1; i >=0; i--){
+    for (int i = numberOfDigits; i >=0; i--){
         int thisDigit = cardNum % 10;
         cardNum = cardNum / 10;
 
