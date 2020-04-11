@@ -2,7 +2,7 @@
 #include <math.h>
 #include <stdio.h>
 
-int main (void)
+int main(void)
 {
     // Initializing input variable
     float dollars = 0;
