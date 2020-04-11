@@ -26,14 +26,16 @@ int main (void)
     // Calculating numbers of coins in need and passing down the remainder.
     int quartersNeeded = input / quarter;
     float remainderChange = input - (quartersNeeded * quarter);
-    int dimesNeeded = remainderChange / dime;
+    int dimesNeeded = round(remainderChange / dime);
     remainderChange = remainderChange - (dimesNeeded * dime);
-    int nickelsNeeded = remainderChange / nickel;
+    int nickelsNeeded = round(remainderChange / nickel);
     remainderChange = remainderChange - (nickelsNeeded * nickel);
     int penniesNeeded = round(remainderChange / penny);
     remainderChange = remainderChange - (penniesNeeded * penny);
     int coinsNeeded = round(quartersNeeded + dimesNeeded + nickelsNeeded + penniesNeeded);
     
+
+    printf("%i quarters; %i dimes; %i nickels; %i pennies, remainder change: %0.2f\n", quartersNeeded, dimesNeeded, nickelsNeeded, penniesNeeded, remainderChange);
     printf("%i\n", coinsNeeded);
 
 }
