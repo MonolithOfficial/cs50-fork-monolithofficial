@@ -34,8 +34,6 @@ int main (void)
     remainderChange = remainderChange - (penniesNeeded * penny);
     int coinsNeeded = round(quartersNeeded + dimesNeeded + nickelsNeeded + penniesNeeded);
     
-
-    printf("%i quarters; %i dimes; %i nickels; %i pennies, remainder change: %0.2f\n", quartersNeeded, dimesNeeded, nickelsNeeded, penniesNeeded, remainderChange);
     printf("%i\n", coinsNeeded);
 
 }
