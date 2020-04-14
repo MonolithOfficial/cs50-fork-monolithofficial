@@ -24,10 +24,10 @@ int main (void)
     {
      printf("Grade %i\n", index);
     }
-    // int letter_count = count_letters(text);
-    // int word_count = count_words(text);
-    // int sentence_count = count_sentences(text);
-    // printf("%i letter(s)\n%i word(s)\n%i sentence(s)\n", letter_count, word_count, sentence_count);
+    int letter_count = count_letters(text);
+    int word_count = count_words(text);
+    int sentence_count = count_sentences(text);
+    printf("%i letter(s)\n%i word(s)\n%i sentence(s)\n", letter_count, word_count, sentence_count);
 }
 
 
@@ -36,7 +36,11 @@ int count_letters(string input)
     int count = 0;
     for(int i = 0; input[i] != '\0'; i++)
     {
-        if(isalpha(input[i]))
+        if (input[i] >= 'a' && input[i] <= 'z')
+        {
+            count++;
+        }
+        else if (input[i] >= 'A' && input[i] <= 'Z')
         {
             count++;
         }
@@ -80,5 +84,5 @@ int coleman_liau_index(string input)
     float l = (letter_count / word_count) * 100;
     float s = (sentence_count / word_count) * 100;
 
-    return (0.0588 * l) - (0.296 * s) - 15.8;
+    return round((0.0588 * l) - (0.296 * s) - 15.8);
 }
