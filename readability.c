@@ -36,11 +36,7 @@ int count_letters(string input)
     int count = 0;
     for(int i = 0; input[i] != '\0'; i++)
     {
-        if (input[i] >= 'a' && input[i] <= 'z')
-        {
-            count++;
-        }
-        else if (input[i] >= 'A' && input[i] <= 'Z')
+        if(isalpha(input[i]))
         {
             count++;
         }
