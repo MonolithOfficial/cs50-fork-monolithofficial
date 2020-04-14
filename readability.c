@@ -23,11 +23,11 @@ int main (void)
     else
     {
      printf("Grade %i\n", index);
-    }
-    int letter_count = count_letters(text);
-    int word_count = count_words(text);
-    int sentence_count = count_sentences(text);
-    printf("%i letter(s)\n%i word(s)\n%i sentence(s)\n", letter_count, word_count, sentence_count);
+    // }
+    // int letter_count = count_letters(text);
+    // int word_count = count_words(text);
+    // int sentence_count = count_sentences(text);
+    // printf("%i letter(s)\n%i word(s)\n%i sentence(s)\n", letter_count, word_count, sentence_count);
 }
 
 
