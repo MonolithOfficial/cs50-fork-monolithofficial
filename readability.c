@@ -81,8 +81,8 @@ int coleman_liau_index(string input)
     int word_count = count_words(input);
     int sentence_count = count_sentences(input);
 
-    float l = (letter_count / word_count) * 100;
-    float s = (sentence_count / word_count) * 100;
+    float l = (letter_count / word_count) * 100.0;
+    float s = (sentence_count / word_count) * 100.0;
 
     return round((0.0588 * l) - (0.296 * s) - 15.8);
 }
