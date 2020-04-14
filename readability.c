@@ -5,13 +5,13 @@
 int count_letters(string input);
 int count_words(string input);
 int count_sentences(string input);
-float coleman_liau_index(string input);
+int coleman_liau_index(string input);
 
 int main (void)
 {
     string text = get_string("Text: ");
 
-    float index = coleman_liau_index(text);
+    int index = coleman_liau_index(text);
     if (index < 1)
     {
         printf("Before Grade 1");
@@ -22,7 +22,7 @@ int main (void)
     }
     else
     {
-     printf("Grade %f\n", index);
+     printf("Grade %i\n", index);
     }
     int letter_count = count_letters(text);
     int word_count = count_words(text);
@@ -75,7 +75,7 @@ int count_sentences(string input)
 }
 
 
-float coleman_liau_index(string input)
+int coleman_liau_index(string input)
 {
     int letter_count = count_letters(input);
     int word_count = count_words(input);
