@@ -33,7 +33,8 @@ int main(int argc, string argv[])
             }
         }
     }
-    if (count != strlen(argv[1]) || duplicateCount != 0) // Do not allow further runtime if the number of duplicates is something other than 0.
+    if (count != strlen(argv[1])
+        || duplicateCount != 0) // Do not allow further runtime if the number of duplicates is something other than 0.
     {
         printf("Usage: ./substitution key\n");
         return 1;
