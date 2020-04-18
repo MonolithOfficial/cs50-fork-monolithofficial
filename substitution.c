@@ -43,7 +43,7 @@ int main(int argc, string argv[])
     {
         string plaintext = get_string("Plaintext: ");
         string upperAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        string lowerAlphabet = "abcdefghigklmnopqrstuvwxyz";
+        string lowerAlphabet = "abcdefghijklmnopqrstuvwxyz";
         int index = 0;
         // int arrayOfIndexes[strlen(plaintext)];
         // int matchCount = 0;
