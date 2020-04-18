@@ -50,7 +50,8 @@ int main(int argc, string argv[])
         printf("ciphertext: ");
         for (int i = 0; plaintext[i] != '\0'; i++)
         {
-            if (plaintext[i] >= 65 && plaintext[i] <= 90){
+            if (plaintext[i] >= 65 && plaintext[i] <= 90)
+            {
 
                 for (int j = 0; upperAlphabet[j] != '\0'; j++)
                 {
@@ -92,10 +93,10 @@ int main(int argc, string argv[])
                 }
             }
             if (!isalpha(plaintext[i]))
-                {
-                    printf("%c", plaintext[i]);
-                    continue;
-                }
+            {
+                printf("%c", plaintext[i]);
+                continue;
+            }
 
         }
         printf("\n");
