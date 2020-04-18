@@ -61,7 +61,7 @@ int main(int argc, string argv[])
                         // printf("%i\n", index);
                         // arrayOfIndexes[matchCount] = index;
                         argv[1][index] = toupper(argv[1][index]);
-                        printf("Ciphertext: ");
+                        printf("ciphertext: ");
                         printf("%c", argv[1][index]);
                     }
 
@@ -81,7 +81,7 @@ int main(int argc, string argv[])
                         // printf("%i\n", index);
                         // arrayOfIndexes[matchCount] = index;
                         argv[1][index] = tolower(argv[1][index]);
-                        printf("Ciphertext: ");
+                        printf("ciphertext: ");
                         printf("%c", argv[1][index]);
                     }
 
