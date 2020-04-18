@@ -33,7 +33,7 @@ int main(int argc, string argv[])
             }
         }
     }
-    printf("%i\n", duplicateCount);
+    // printf("%i\n", duplicateCount);
     if (count != strlen(argv[1]) || duplicateCount != 0)
     {
         printf("Usage: ./substitution key\n");
@@ -61,6 +61,7 @@ int main(int argc, string argv[])
                         // printf("%i\n", index);
                         // arrayOfIndexes[matchCount] = index;
                         argv[1][index] = toupper(argv[1][index]);
+                        printf("Ciphertext: ");
                         printf("%c", argv[1][index]);
                     }
 
@@ -80,6 +81,7 @@ int main(int argc, string argv[])
                         // printf("%i\n", index);
                         // arrayOfIndexes[matchCount] = index;
                         argv[1][index] = tolower(argv[1][index]);
+                        printf("Ciphertext: ");
                         printf("%c", argv[1][index]);
                     }
 
