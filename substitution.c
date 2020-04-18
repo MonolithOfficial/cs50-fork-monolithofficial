@@ -47,9 +47,11 @@ int main(int argc, string argv[])
         int index = 0;
         // int arrayOfIndexes[strlen(plaintext)];
         // int matchCount = 0;
+        printf("ciphertext: ");
         for (int i = 0; plaintext[i] != '\0'; i++)
         {
             if (plaintext[i] >= 65 && plaintext[i] <= 90){
+
                 for (int j = 0; upperAlphabet[j] != '\0'; j++)
                 {
                     if (plaintext[i] == upperAlphabet[j])
@@ -61,7 +63,7 @@ int main(int argc, string argv[])
                         // printf("%i\n", index);
                         // arrayOfIndexes[matchCount] = index;
                         argv[1][index] = toupper(argv[1][index]);
-                        printf("ciphertext: ");
+
                         printf("%c", argv[1][index]);
                     }
 
@@ -70,6 +72,7 @@ int main(int argc, string argv[])
             }
             if (plaintext[i] >= 97 && plaintext[i] <= 122)
             {
+
                 for (int j = 0; lowerAlphabet[j] != '\0'; j++)
                 {
                     if (plaintext[i] == lowerAlphabet[j])
@@ -81,7 +84,7 @@ int main(int argc, string argv[])
                         // printf("%i\n", index);
                         // arrayOfIndexes[matchCount] = index;
                         argv[1][index] = tolower(argv[1][index]);
-                        printf("ciphertext: ");
+
                         printf("%c", argv[1][index]);
                     }
 
