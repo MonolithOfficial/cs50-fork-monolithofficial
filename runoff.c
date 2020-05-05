@@ -177,7 +177,7 @@ bool print_winner(void)
 int find_min(void)
 {
     int min = candidates[0].votes;
-    for (int i = 0; i < candidate_count; i++)
+    for (int i = 1; i < candidate_count; i++)
     {
         if (candidates[i].eliminated == false && candidates[min].votes > candidates[i].votes)
         {
@@ -207,7 +207,10 @@ bool is_tie(int min)
     {
         return true;
     }
-    return false;
+    else
+    {
+        return false;
+    }
 }
 
 // Eliminate the candidate (or candidiates) in last place
