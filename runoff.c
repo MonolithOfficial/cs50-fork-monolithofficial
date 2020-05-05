@@ -156,7 +156,6 @@ void tabulate(void)
         }
         candidates[preferences[i][j]].votes++;
     }
-    return;
 }
 
 // Print the winner of the election, if there is one
@@ -179,7 +178,7 @@ int find_min(void)
     int min = candidates[0].votes;
     for (int i = 1; i < candidate_count; i++)
     {
-        if (candidates[i].eliminated == false && candidates[min].votes > candidates[i].votes)
+        if (!candidates[i].eliminated && candidates[min].votes > candidates[i].votes)
         {
             min = candidates[i].votes;
         }
