@@ -16,7 +16,7 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
             bluePtr = &image[i][j].rgbtBlue;
             greenPtr = &image[i][j].rgbtGreen;
             redPtr = &image[i][j].rgbtRed;
-            new_filter = ceil((*bluePtr + *greenPtr + *redPtr) / 3);
+            new_filter = ceil((*bluePtr + *greenPtr + *redPtr) / 3.0);
             *bluePtr = new_filter;
             *greenPtr = new_filter;
             *redPtr = new_filter;
@@ -25,7 +25,7 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
             // printf("Red value: %i\n", *redPtr);
         }
     }
-    printf("%i\n", new_filter);
+    // printf("%i\n", new_filter);
     // printf("%i\n", height);
     // printf("%i\n", width);
     return;
