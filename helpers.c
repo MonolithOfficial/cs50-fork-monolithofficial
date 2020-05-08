@@ -64,8 +64,8 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             // printf("Red value: %i\n", *redPtr);
         }
     }
-    printf("%i\n", height);
-    printf("%i\n", width);
+    // printf("%i\n", height);
+    // printf("%i\n", width);
     return;
 }
 
@@ -82,8 +82,8 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 
         }
     }
-    printf("%i\n", height);
-    printf("%i\n", width);
+    // printf("%i\n", height);
+    // printf("%i\n", width);
     return;
 }
 
