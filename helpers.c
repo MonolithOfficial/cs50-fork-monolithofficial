@@ -58,7 +58,7 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
                 }
             }
 
-            *bluePtr = sepiaGreen;
+            *bluePtr = sepiaBlue;
             *greenPtr = sepiaGreen;
             *redPtr = sepiaRed;
             // printf("Blue value: %i\n", *bluePtr);
