@@ -156,8 +156,8 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
         }
     }
-    printf("Blue blur value: %i\n", blur_blue);
-    printf("Green blur value: %i\n", blur_green);
-    printf("Red blur value: %i\n", blur_red);
+    // printf("Blue blur value: %i\n", blur_blue);
+    // printf("Green blur value: %i\n", blur_green);
+    // printf("Red blur value: %i\n", blur_red);
     return;
 }
