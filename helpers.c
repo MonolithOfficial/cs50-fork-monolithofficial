@@ -49,14 +49,21 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             int sepiaGreen = round(0.349 * (*redPtr) + 0.686 * (*greenPtr) + 0.168 * (*bluePtr));
             int sepiaBlue = round(0.272 * (*redPtr) + 0.534 * (*greenPtr) + 0.131 * (*bluePtr));
 
-            int filterArray[3] = {sepiaBlue, sepiaGreen, sepiaRed};
-            for (int k = 0; k < 3; k++)
-            {
-                if (filterArray[k] > 255)
-                {
-                    filterArray[k] = 255;
-                }
-            }
+            // int filterArray[3] = {sepiaBlue, sepiaGreen, sepiaRed};
+            // for (int k = 0; k < 3; k++)
+            // {
+            //     if (filterArray[k] > 255)
+            //     {
+            //         filterArray[k] = 255;
+            //     }
+            // }
+            if (sepiaRed > 255)
+                sepiaRed = 255;
+            if (sepiaGreen > 255)
+                sepiaGreen = 255;
+            if (sepiaBlue > 255)
+                sepiaBlue = 255;
+
 
             *bluePtr = sepiaBlue;
             *greenPtr = sepiaGreen;
