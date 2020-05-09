@@ -99,5 +99,65 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    BYTE *bluePtr = NULL;
+    BYTE *greenPtr = NULL;
+    BYTE *redPtr = NULL;
+    int blur_blue;
+    int blur_green;
+    int blur_red;
+    for (int i = 1; i < height - 1; i++)
+    {
+        for (int j = 1; j < width - 1; j++)
+        {
+            bluePtr = &image[i][j].rgbtBlue;
+            greenPtr = &image[i][j].rgbtGreen;
+            redPtr = &image[i][j].rgbtRed;
+            int top = i + 1;
+            int right = j + 1;
+            int bottom = i - 1;
+            int left = j - 1;
+
+            blur_blue = (*bluePtr
+            + *&image[top][j].rgbtBlue +
+            + *&image[top][right].rgbtBlue
+            + *&image[i][right].rgbtBlue
+            + *&image[bottom][right].rgbtBlue
+            + *&image[bottom][j].rgbtBlue
+            + *&image[bottom][left].rgbtBlue
+            + *&image[i][left].rgbtBlue
+            + *&image[top][left].rgbtBlue) / 9;
+
+            blur_green = (*greenPtr
+            + *&image[top][j].rgbtGreen +
+            + *&image[top][right].rgbtGreen
+            + *&image[i][right].rgbtGreen
+            + *&image[bottom][right].rgbtGreen
+            + *&image[bottom][j].rgbtGreen
+            + *&image[bottom][left].rgbtGreen
+            + *&image[i][left].rgbtGreen
+            + *&image[top][left].rgbtGreen) / 9;
+
+            blur_red = (*redPtr
+            + *&image[top][j].rgbtRed +
+            + *&image[top][right].rgbtRed
+            + *&image[i][right].rgbtRed
+            + *&image[bottom][right].rgbtRed
+            + *&image[bottom][j].rgbtRed
+            + *&image[bottom][left].rgbtRed
+            + *&image[i][left].rgbtRed
+            + *&image[top][left].rgbtRed) / 9;
+            // printf("Blue value: %i\n", *bluePtr);
+            // printf("Green value: %i\n", *greenPtr);
+            // printf("Red value: %i\n", *redPtr);
+
+            *bluePtr = blur_blue;
+            *greenPtr = blur_green;
+            *redPtr = blur_red;
+
+        }
+    }
+    printf("Blue blur value: %i\n", blur_blue);
+    printf("Green blur value: %i\n", blur_green);
+    printf("Red blur value: %i\n", blur_red);
     return;
 }
