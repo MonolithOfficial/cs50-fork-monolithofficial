@@ -45,9 +45,9 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             greenPtr = &image[i][j].rgbtGreen;
             redPtr = &image[i][j].rgbtRed;
 
-            int sepiaBlue = round(0.272 * (*bluePtr) + 0.534 * (*bluePtr) + 0.131 * (*bluePtr));
-            int sepiaGreen = round(0.349 * (*greenPtr) + 0.686 * (*greenPtr) + 0.168 * (*greenPtr));
-            int sepiaRed = round(0.393 * (*redPtr) + 0.769 * (*redPtr) + 0.189 * (*redPtr));
+            int sepiaBlue = round(0.272 * (*redPtr) + 0.534 * (*greenPtr) + 0.131 * (*bluePtr));
+            int sepiaGreen = round(0.349 * (*redPtr) + 0.686 * (*greenPtr) + 0.168 * (*bluePtr));
+            int sepiaRed = round(0.393 * (*redPtr) + 0.769 * (*greenPtr) + 0.189 * (*bluePtr));
 
             int filterArray[3] = {sepiaBlue, sepiaGreen, sepiaRed};
             for (int k = 0; k < 3; k++)
