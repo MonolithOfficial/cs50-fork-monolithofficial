@@ -140,7 +140,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 + *&image[i][left].rgbtGreen
                 + *&image[top][left].rgbtGreen) / 10.2);
 
-                blur_red = round((*redPtr
+                blur_red = ceil((*redPtr
                 + *&image[top][j].rgbtRed +
                 + *&image[top][right].rgbtRed
                 + *&image[i][right].rgbtRed
