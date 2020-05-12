@@ -163,7 +163,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 // + *&image[bottom][j].rgbtBlue
                 // + *&image[bottom][left].rgbtBlue
                 + *&image[i][left].rgbtBlue
-                + *&image[top][left].rgbtBlue) / 6.0);
+                + *&image[top][left].rgbtBlue) / 6.5);
 
                 blur_green = round((*greenPtr
                 + *&image[top][j].rgbtGreen
@@ -173,7 +173,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 // + *&image[bottom][j].rgbtGreen
                 // + *&image[bottom][left].rgbtGreen
                 + *&image[i][left].rgbtGreen
-                + *&image[top][left].rgbtGreen) / 6.0);
+                + *&image[top][left].rgbtGreen) / 6.5);
 
                 blur_red = round((*redPtr
                 + *&image[top][j].rgbtRed
@@ -183,7 +183,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 // + *&image[bottom][j].rgbtRed
                 // + *&image[bottom][left].rgbtRed
                 + *&image[i][left].rgbtRed
-                + *&image[top][left].rgbtRed) / 6.0);
+                + *&image[top][left].rgbtRed) / 6.5);
                 *bluePtr = blur_blue;
                 *greenPtr = blur_green;
                 *redPtr = blur_red;
@@ -195,7 +195,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 + *&image[top][right].rgbtBlue
                 + *&image[i][right].rgbtBlue
                 + *&image[bottom][right].rgbtBlue
-                + *&image[bottom][j].rgbtBlue) / 6.0);
+                + *&image[bottom][j].rgbtBlue) / 6.5);
                 // + *&image[bottom][left].rgbtBlue
                 // + *&image[i][left].rgbtBlue
                 // + *&image[top][left].rgbtBlue)
@@ -205,7 +205,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 + *&image[top][right].rgbtGreen
                 + *&image[i][right].rgbtGreen
                 + *&image[bottom][right].rgbtGreen
-                + *&image[bottom][j].rgbtGreen)  / 6.0);
+                + *&image[bottom][j].rgbtGreen)  / 6.5);
                 // + *&image[bottom][left].rgbtGreen
                 // + *&image[i][left].rgbtGreen
                 // + *&image[top][left].rgbtGreen)
@@ -215,7 +215,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 + *&image[top][right].rgbtRed
                 + *&image[i][right].rgbtRed
                 + *&image[bottom][right].rgbtRed
-                + *&image[bottom][j].rgbtRed) / 6.0);
+                + *&image[bottom][j].rgbtRed) / 6.5);
                 // + *&image[bottom][left].rgbtRed
                 // + *&image[i][left].rgbtRed
                 // + *&image[top][left].rgbtRed)
@@ -267,7 +267,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 + *&image[bottom][right].rgbtBlue
                 + *&image[bottom][j].rgbtBlue
                 + *&image[bottom][left].rgbtBlue
-                + *&image[i][left].rgbtBlue) / 6.0);
+                + *&image[i][left].rgbtBlue) / 6.5);
                 // + *&image[top][left].rgbtBlue)
 
                 blur_green = round((*greenPtr
@@ -277,7 +277,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 + *&image[bottom][right].rgbtGreen
                 + *&image[bottom][j].rgbtGreen
                 + *&image[bottom][left].rgbtGreen
-                + *&image[i][left].rgbtGreen) / 6.0);
+                + *&image[i][left].rgbtGreen) / 6.5);
                 // + *&image[top][left].rgbtGreen)
 
                 blur_red = round((*redPtr
@@ -287,7 +287,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 + *&image[bottom][right].rgbtRed
                 + *&image[bottom][j].rgbtRed
                 + *&image[bottom][left].rgbtRed
-                + *&image[i][left].rgbtRed) / 6.0);
+                + *&image[i][left].rgbtRed) / 6.5);
                 // + *&image[top][left].rgbtRed)
                 *bluePtr = blur_blue;
                 *greenPtr = blur_green;
@@ -304,7 +304,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 + *&image[bottom][j].rgbtBlue
                 + *&image[bottom][left].rgbtBlue
                 + *&image[i][left].rgbtBlue
-                + *&image[top][left].rgbtBlue) / 6.0);
+                + *&image[top][left].rgbtBlue) / 6.5);
 
                 blur_green = round((*greenPtr
                 + *&image[top][j].rgbtGreen
@@ -314,7 +314,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 + *&image[bottom][j].rgbtGreen
                 + *&image[bottom][left].rgbtGreen
                 + *&image[i][left].rgbtGreen
-                + *&image[top][left].rgbtGreen) / 6.0);
+                + *&image[top][left].rgbtGreen) / 6.5);
 
                 blur_red = round((*redPtr
                 + *&image[top][j].rgbtRed
@@ -324,7 +324,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 + *&image[bottom][j].rgbtRed
                 + *&image[bottom][left].rgbtRed
                 + *&image[i][left].rgbtRed
-                + *&image[top][left].rgbtRed) / 6.0);
+                + *&image[top][left].rgbtRed) / 6.5);
                 *bluePtr = blur_blue;
                 *greenPtr = blur_green;
                 *redPtr = blur_red;
