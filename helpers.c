@@ -120,7 +120,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
             if (j != 0 && i != 0 && i != height - 1 && j != width - 1)
             {
-                    blur_blue = ceil((*bluePtr
+                    blur_blue = round((*bluePtr
                 + *&image[top][j].rgbtBlue +
                 + *&image[top][right].rgbtBlue
                 + *&image[i][right].rgbtBlue
@@ -128,7 +128,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 + *&image[bottom][j].rgbtBlue
                 + *&image[bottom][left].rgbtBlue
                 + *&image[i][left].rgbtBlue
-                + *&image[top][left].rgbtBlue) / 10.1);
+                + *&image[top][left].rgbtBlue) / 10.0);
 
                 blur_green = round((*greenPtr
                 + *&image[top][j].rgbtGreen +
