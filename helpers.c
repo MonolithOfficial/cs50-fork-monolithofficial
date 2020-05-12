@@ -99,278 +99,324 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
-    BYTE *bluePtr = NULL;
-    BYTE *greenPtr = NULL;
-    BYTE *redPtr = NULL;
-    int blur_blue;
-    int blur_green;
-    int blur_red;
-    for (int i = 0; i <= height - 1; i++)
+
+    long average_blue1;
+    long average_green1;
+    long average_red1;
+    float pixels;
+    RGBTRIPLE temp[height][width];
+
+
+    for (int h = 0; h < height; h++)
     {
-        for (int j = 0; j <= width - 1; j++)
+        for (int w = 0; w < width; w++)
         {
-            bluePtr = &image[i][j].rgbtBlue;
-            greenPtr = &image[i][j].rgbtGreen;
-            redPtr = &image[i][j].rgbtRed;
+            temp[h][w] = image[h][w];
+        }
+    }
 
-            int top = i + 1;
-            int right = j + 1;
-            int bottom = i - 1;
-            int left = j - 1;
+    for (int h = 0; h < height; h++)
+    {
+        for (int w = 0; w < width; w++)
+        {
+            average_blue1 = 0;
+            average_green1 = 0;
+            average_red1 = 0;
+            pixels = 0;
 
-            if (j != 0 && i != 0 && i != height - 1 && j != width - 1)
+            for (int d = h - 1; d <= h + 1; d++)
             {
-                    blur_blue = round((*bluePtr
-                + *&image[top][j].rgbtBlue
-                + *&image[top][right].rgbtBlue
-                + *&image[i][right].rgbtBlue
-                + *&image[bottom][right].rgbtBlue
-                + *&image[bottom][j].rgbtBlue
-                + *&image[bottom][left].rgbtBlue
-                + *&image[i][left].rgbtBlue
-                + *&image[top][left].rgbtBlue) / 10.0);
+                for (int c = w - 1; c <= w + 1; c++)
+                {
+                    if (d >= 0 && c >= 0 && c < width && d < height)
+                    {
+                        average_blue1 = average_blue1 + temp[d][c].rgbtBlue;
+                        average_green1 = average_green1 + temp[d][c].rgbtGreen;
+                        average_red1 = average_red1 + temp[d][c].rgbtRed;
+                        pixels++;
 
-                blur_green = round((*greenPtr
-                + *&image[top][j].rgbtGreen
-                + *&image[top][right].rgbtGreen
-                + *&image[i][right].rgbtGreen
-                + *&image[bottom][right].rgbtGreen
-                + *&image[bottom][j].rgbtGreen
-                + *&image[bottom][left].rgbtGreen
-                + *&image[i][left].rgbtGreen
-                + *&image[top][left].rgbtGreen) / 10.0);
-
-                blur_red = ceil((*redPtr
-                + *&image[top][j].rgbtRed
-                + *&image[top][right].rgbtRed
-                + *&image[i][right].rgbtRed
-                + *&image[bottom][right].rgbtRed
-                + *&image[bottom][j].rgbtRed
-                + *&image[bottom][left].rgbtRed
-                + *&image[i][left].rgbtRed
-                + *&image[top][left].rgbtRed) / 10.1);
-                *bluePtr = blur_blue;
-                *greenPtr = blur_green;
-                *redPtr = blur_red;
+                    }
+                }
             }
-            if (i == 0 && j != 0 && i != height - 1 && j != width - 1)
-            {
-                blur_blue = round((*bluePtr
-                + *&image[top][j].rgbtBlue
-                + *&image[top][right].rgbtBlue
-                + *&image[i][right].rgbtBlue
-                // + *&image[bottom][right].rgbtBlue
-                // + *&image[bottom][j].rgbtBlue
-                // + *&image[bottom][left].rgbtBlue
-                + *&image[i][left].rgbtBlue
-                + *&image[top][left].rgbtBlue) / 6.0);
+            image[h][w].rgbtBlue = round(average_blue1 / pixels);
+            image[h][w].rgbtGreen = round(average_green1 / pixels);
+            image[h][w].rgbtRed = round(average_red1 / pixels);
 
-                blur_green = round((*greenPtr
-                + *&image[top][j].rgbtGreen
-                + *&image[top][right].rgbtGreen
-                + *&image[i][right].rgbtGreen
-                // + *&image[bottom][right].rgbtGreen
-                // + *&image[bottom][j].rgbtGreen
-                // + *&image[bottom][left].rgbtGreen
-                + *&image[i][left].rgbtGreen
-                + *&image[top][left].rgbtGreen) / 6.0);
-
-                blur_red = round((*redPtr
-                + *&image[top][j].rgbtRed
-                + *&image[top][right].rgbtRed
-                + *&image[i][right].rgbtRed
-                // + *&image[bottom][right].rgbtRed
-                // + *&image[bottom][j].rgbtRed
-                // + *&image[bottom][left].rgbtRed
-                + *&image[i][left].rgbtRed
-                + *&image[top][left].rgbtRed) / 6.0);
-                *bluePtr = blur_blue;
-                *greenPtr = blur_green;
-                *redPtr = blur_red;
-            }
-            if (j == 0 && i != 0 && i != height - 1 && j != width - 1)
-            {
-                blur_blue = round((*bluePtr
-                + *&image[top][j].rgbtBlue
-                + *&image[top][right].rgbtBlue
-                + *&image[i][right].rgbtBlue
-                + *&image[bottom][right].rgbtBlue
-                + *&image[bottom][j].rgbtBlue) / 6.0);
-                // + *&image[bottom][left].rgbtBlue
-                // + *&image[i][left].rgbtBlue
-                // + *&image[top][left].rgbtBlue)
-
-                blur_green = round((*greenPtr
-                + *&image[top][j].rgbtGreen
-                + *&image[top][right].rgbtGreen
-                + *&image[i][right].rgbtGreen
-                + *&image[bottom][right].rgbtGreen
-                + *&image[bottom][j].rgbtGreen)  / 6.0);
-                // + *&image[bottom][left].rgbtGreen
-                // + *&image[i][left].rgbtGreen
-                // + *&image[top][left].rgbtGreen)
-
-                blur_red = round((*redPtr
-                + *&image[top][j].rgbtRed
-                + *&image[top][right].rgbtRed
-                + *&image[i][right].rgbtRed
-                + *&image[bottom][right].rgbtRed
-                + *&image[bottom][j].rgbtRed) / 6.0);
-                // + *&image[bottom][left].rgbtRed
-                // + *&image[i][left].rgbtRed
-                // + *&image[top][left].rgbtRed)
-                *bluePtr = blur_blue;
-                *greenPtr = blur_green;
-                *redPtr = blur_red;
-            }
-            if (i == 0 && j == 0 && i != height - 1 && j != width - 1)
-            {
-                blur_blue = round((*bluePtr
-                + *&image[top][j].rgbtBlue
-                + *&image[top][right].rgbtBlue
-                + *&image[i][right].rgbtBlue) / 4.0);
-                // + *&image[bottom][right].rgbtBlue
-                // + *&image[bottom][j].rgbtBlue
-                // + *&image[bottom][left].rgbtBlue
-                // + *&image[i][left].rgbtBlue
-                // + *&image[top][left].rgbtBlue)
-
-                blur_green = round((*greenPtr
-                + *&image[top][j].rgbtGreen
-                + *&image[top][right].rgbtGreen
-                + *&image[i][right].rgbtGreen) / 4.0);
-                // + *&image[bottom][right].rgbtGreen
-                // + *&image[bottom][j].rgbtGreen
-                // + *&image[bottom][left].rgbtGreen
-                // + *&image[i][left].rgbtGreen
-                // + *&image[top][left].rgbtGreen)
-
-                blur_red = round((*redPtr
-                + *&image[top][j].rgbtRed
-                + *&image[top][right].rgbtRed
-                + *&image[i][right].rgbtRed) / 4.0);
-                // + *&image[bottom][right].rgbtRed
-                // + *&image[bottom][j].rgbtRed
-                // + *&image[bottom][left].rgbtRed
-                // + *&image[i][left].rgbtRed
-                // + *&image[top][left].rgbtRed)
-                *bluePtr = blur_blue;
-                *greenPtr = blur_green;
-                *redPtr = blur_red;
-            }
-            if (i == height - 1 && j != width - 1 && i != 0 && j != 0)
-            {
-                blur_blue = round((*bluePtr
-                // + *&image[top][j].rgbtBlue +
-                // + *&image[top][right].rgbtBlue
-                + *&image[i][right].rgbtBlue
-                + *&image[bottom][right].rgbtBlue
-                + *&image[bottom][j].rgbtBlue
-                + *&image[bottom][left].rgbtBlue
-                + *&image[i][left].rgbtBlue) / 6.0);
-                // + *&image[top][left].rgbtBlue)
-
-                blur_green = round((*greenPtr
-                // + *&image[top][j].rgbtGreen +
-                // + *&image[top][right].rgbtGreen
-                + *&image[i][right].rgbtGreen
-                + *&image[bottom][right].rgbtGreen
-                + *&image[bottom][j].rgbtGreen
-                + *&image[bottom][left].rgbtGreen
-                + *&image[i][left].rgbtGreen) / 6.0);
-                // + *&image[top][left].rgbtGreen)
-
-                blur_red = round((*redPtr
-                // + *&image[top][j].rgbtRed +
-                // + *&image[top][right].rgbtRed
-                + *&image[i][right].rgbtRed
-                + *&image[bottom][right].rgbtRed
-                + *&image[bottom][j].rgbtRed
-                + *&image[bottom][left].rgbtRed
-                + *&image[i][left].rgbtRed) / 6.0);
-                // + *&image[top][left].rgbtRed)
-                *bluePtr = blur_blue;
-                *greenPtr = blur_green;
-                *redPtr = blur_red;
-
-            }
-            if (j == width - 1 && i != height - 1 && i != 0 && j != 0)
-            {
-                blur_blue = round((*bluePtr
-                + *&image[top][j].rgbtBlue
-                // + *&image[top][right].rgbtBlue
-                // + *&image[i][right].rgbtBlue
-                // + *&image[bottom][right].rgbtBlue
-                + *&image[bottom][j].rgbtBlue
-                + *&image[bottom][left].rgbtBlue
-                + *&image[i][left].rgbtBlue
-                + *&image[top][left].rgbtBlue) / 6.0);
-
-                blur_green = round((*greenPtr
-                + *&image[top][j].rgbtGreen
-                // + *&image[top][right].rgbtGreen
-                // + *&image[i][right].rgbtGreen
-                // + *&image[bottom][right].rgbtGreen
-                + *&image[bottom][j].rgbtGreen
-                + *&image[bottom][left].rgbtGreen
-                + *&image[i][left].rgbtGreen
-                + *&image[top][left].rgbtGreen) / 6.0);
-
-                blur_red = round((*redPtr
-                + *&image[top][j].rgbtRed
-                // + *&image[top][right].rgbtRed
-                // + *&image[i][right].rgbtRed
-                // + *&image[bottom][right].rgbtRed
-                + *&image[bottom][j].rgbtRed
-                + *&image[bottom][left].rgbtRed
-                + *&image[i][left].rgbtRed
-                + *&image[top][left].rgbtRed) / 6.0);
-                *bluePtr = blur_blue;
-                *greenPtr = blur_green;
-                *redPtr = blur_red;
-            }
-
-            if (j == width - 1 && i == height - 1 && i != 0 && j != 0)
-            {
-                blur_blue = round((*bluePtr
-                // + *&image[top][j].rgbtBlue +
-                // + *&image[top][right].rgbtBlue
-                // + *&image[i][right].rgbtBlue
-                // + *&image[bottom][right].rgbtBlue
-                + *&image[bottom][j].rgbtBlue
-                + *&image[bottom][left].rgbtBlue
-                + *&image[i][left].rgbtBlue) / 4.0);
-                // + *&image[top][left].rgbtBlue)
-
-                blur_green = round((*greenPtr
-                // + *&image[top][j].rgbtGreen +
-                // + *&image[top][right].rgbtGreen
-                // + *&image[i][right].rgbtGreen
-                // + *&image[bottom][right].rgbtGreen
-                + *&image[bottom][j].rgbtGreen
-                + *&image[bottom][left].rgbtGreen
-                + *&image[i][left].rgbtGreen) / 4.0);
-                // + *&image[top][left].rgbtGreen)
-
-                blur_red = round((*redPtr
-                // + *&image[top][j].rgbtRed +
-                // + *&image[top][right].rgbtRed
-                // + *&image[i][right].rgbtRed
-                // + *&image[bottom][right].rgbtRed
-                + *&image[bottom][j].rgbtRed
-                + *&image[bottom][left].rgbtRed
-                + *&image[i][left].rgbtRed) / 4.0);
-                // + *&image[top][left].rgbtRed)
-                *bluePtr = blur_blue;
-                *greenPtr = blur_green;
-                *redPtr = blur_red;
-            }
-            // printf("Blue value: %i\n", *bluePtr);
-            // printf("Green value: %i\n", *greenPtr);
-            // printf("Red value: %i\n", *redPtr);
 
         }
     }
+    // BYTE *bluePtr = NULL;
+    // BYTE *greenPtr = NULL;
+    // BYTE *redPtr = NULL;
+    // int blur_blue;
+    // int blur_green;
+    // int blur_red;
+    // for (int i = 0; i <= height - 1; i++)
+    // {
+    //     for (int j = 0; j <= width - 1; j++)
+    //     {
+    //         bluePtr = &image[i][j].rgbtBlue;
+    //         greenPtr = &image[i][j].rgbtGreen;
+    //         redPtr = &image[i][j].rgbtRed;
+
+    //         int top = i + 1;
+    //         int right = j + 1;
+    //         int bottom = i - 1;
+    //         int left = j - 1;
+
+    //         if (j != 0 && i != 0 && i != height - 1 && j != width - 1)
+    //         {
+    //                 blur_blue = round((*bluePtr
+    //             + *&image[top][j].rgbtBlue
+    //             + *&image[top][right].rgbtBlue
+    //             + *&image[i][right].rgbtBlue
+    //             + *&image[bottom][right].rgbtBlue
+    //             + *&image[bottom][j].rgbtBlue
+    //             + *&image[bottom][left].rgbtBlue
+    //             + *&image[i][left].rgbtBlue
+    //             + *&image[top][left].rgbtBlue) / 10.0);
+
+    //             blur_green = round((*greenPtr
+    //             + *&image[top][j].rgbtGreen
+    //             + *&image[top][right].rgbtGreen
+    //             + *&image[i][right].rgbtGreen
+    //             + *&image[bottom][right].rgbtGreen
+    //             + *&image[bottom][j].rgbtGreen
+    //             + *&image[bottom][left].rgbtGreen
+    //             + *&image[i][left].rgbtGreen
+    //             + *&image[top][left].rgbtGreen) / 10.0);
+
+    //             blur_red = round((*redPtr
+    //             + *&image[top][j].rgbtRed
+    //             + *&image[top][right].rgbtRed
+    //             + *&image[i][right].rgbtRed
+    //             + *&image[bottom][right].rgbtRed
+    //             + *&image[bottom][j].rgbtRed
+    //             + *&image[bottom][left].rgbtRed
+    //             + *&image[i][left].rgbtRed
+    //             + *&image[top][left].rgbtRed) / 10.0);
+    //             *bluePtr = blur_blue;
+    //             *greenPtr = blur_green;
+    //             *redPtr = blur_red;
+    //         }
+    //         if (i == 0 && j != 0 && i != height - 1 && j != width - 1)
+    //         {
+    //             blur_blue = round((*bluePtr
+    //             + *&image[top][j].rgbtBlue
+    //             + *&image[top][right].rgbtBlue
+    //             + *&image[i][right].rgbtBlue
+    //             // + *&image[bottom][right].rgbtBlue
+    //             // + *&image[bottom][j].rgbtBlue
+    //             // + *&image[bottom][left].rgbtBlue
+    //             + *&image[i][left].rgbtBlue
+    //             + *&image[top][left].rgbtBlue) / 6.0);
+
+    //             blur_green = round((*greenPtr
+    //             + *&image[top][j].rgbtGreen
+    //             + *&image[top][right].rgbtGreen
+    //             + *&image[i][right].rgbtGreen
+    //             // + *&image[bottom][right].rgbtGreen
+    //             // + *&image[bottom][j].rgbtGreen
+    //             // + *&image[bottom][left].rgbtGreen
+    //             + *&image[i][left].rgbtGreen
+    //             + *&image[top][left].rgbtGreen) / 6.0);
+
+    //             blur_red = round((*redPtr
+    //             + *&image[top][j].rgbtRed
+    //             + *&image[top][right].rgbtRed
+    //             + *&image[i][right].rgbtRed
+    //             // + *&image[bottom][right].rgbtRed
+    //             // + *&image[bottom][j].rgbtRed
+    //             // + *&image[bottom][left].rgbtRed
+    //             + *&image[i][left].rgbtRed
+    //             + *&image[top][left].rgbtRed) / 6.0);
+    //             *bluePtr = blur_blue;
+    //             *greenPtr = blur_green;
+    //             *redPtr = blur_red;
+    //         }
+    //         else if (j == 0 && i != 0 && i != height - 1 && j != width - 1)
+    //         {
+    //             blur_blue = round((*bluePtr
+    //             + *&image[top][j].rgbtBlue
+    //             + *&image[top][right].rgbtBlue
+    //             + *&image[i][right].rgbtBlue
+    //             + *&image[bottom][right].rgbtBlue
+    //             + *&image[bottom][j].rgbtBlue) / 6.0);
+    //             // + *&image[bottom][left].rgbtBlue
+    //             // + *&image[i][left].rgbtBlue
+    //             // + *&image[top][left].rgbtBlue)
+
+    //             blur_green = round((*greenPtr
+    //             + *&image[top][j].rgbtGreen
+    //             + *&image[top][right].rgbtGreen
+    //             + *&image[i][right].rgbtGreen
+    //             + *&image[bottom][right].rgbtGreen
+    //             + *&image[bottom][j].rgbtGreen)  / 6.0);
+    //             // + *&image[bottom][left].rgbtGreen
+    //             // + *&image[i][left].rgbtGreen
+    //             // + *&image[top][left].rgbtGreen)
+
+    //             blur_red = round((*redPtr
+    //             + *&image[top][j].rgbtRed
+    //             + *&image[top][right].rgbtRed
+    //             + *&image[i][right].rgbtRed
+    //             + *&image[bottom][right].rgbtRed
+    //             + *&image[bottom][j].rgbtRed) / 6.0);
+    //             // + *&image[bottom][left].rgbtRed
+    //             // + *&image[i][left].rgbtRed
+    //             // + *&image[top][left].rgbtRed)
+    //             *bluePtr = blur_blue;
+    //             *greenPtr = blur_green;
+    //             *redPtr = blur_red;
+    //         }
+    //         else if (i == 0 && j == 0 && i != height - 1 && j != width - 1)
+    //         {
+    //             blur_blue = round((*bluePtr
+    //             + *&image[top][j].rgbtBlue
+    //             + *&image[top][right].rgbtBlue
+    //             + *&image[i][right].rgbtBlue) / 4.0);
+    //             // + *&image[bottom][right].rgbtBlue
+    //             // + *&image[bottom][j].rgbtBlue
+    //             // + *&image[bottom][left].rgbtBlue
+    //             // + *&image[i][left].rgbtBlue
+    //             // + *&image[top][left].rgbtBlue)
+
+    //             blur_green = round((*greenPtr
+    //             + *&image[top][j].rgbtGreen
+    //             + *&image[top][right].rgbtGreen
+    //             + *&image[i][right].rgbtGreen) / 4.0);
+    //             // + *&image[bottom][right].rgbtGreen
+    //             // + *&image[bottom][j].rgbtGreen
+    //             // + *&image[bottom][left].rgbtGreen
+    //             // + *&image[i][left].rgbtGreen
+    //             // + *&image[top][left].rgbtGreen)
+
+    //             blur_red = round((*redPtr
+    //             + *&image[top][j].rgbtRed
+    //             + *&image[top][right].rgbtRed
+    //             + *&image[i][right].rgbtRed) / 4.0);
+    //             // + *&image[bottom][right].rgbtRed
+    //             // + *&image[bottom][j].rgbtRed
+    //             // + *&image[bottom][left].rgbtRed
+    //             // + *&image[i][left].rgbtRed
+    //             // + *&image[top][left].rgbtRed)
+    //             *bluePtr = blur_blue;
+    //             *greenPtr = blur_green;
+    //             *redPtr = blur_red;
+    //         }
+    //         else if (i == height - 1 && j != width - 1 && i != 0 && j != 0)
+    //         {
+    //             blur_blue = round((*bluePtr
+    //             // + *&image[top][j].rgbtBlue +
+    //             // + *&image[top][right].rgbtBlue
+    //             + *&image[i][right].rgbtBlue
+    //             + *&image[bottom][right].rgbtBlue
+    //             + *&image[bottom][j].rgbtBlue
+    //             + *&image[bottom][left].rgbtBlue
+    //             + *&image[i][left].rgbtBlue) / 6.0);
+    //             // + *&image[top][left].rgbtBlue)
+
+    //             blur_green = round((*greenPtr
+    //             // + *&image[top][j].rgbtGreen +
+    //             // + *&image[top][right].rgbtGreen
+    //             + *&image[i][right].rgbtGreen
+    //             + *&image[bottom][right].rgbtGreen
+    //             + *&image[bottom][j].rgbtGreen
+    //             + *&image[bottom][left].rgbtGreen
+    //             + *&image[i][left].rgbtGreen) / 6.0);
+    //             // + *&image[top][left].rgbtGreen)
+
+    //             blur_red = round((*redPtr
+    //             // + *&image[top][j].rgbtRed +
+    //             // + *&image[top][right].rgbtRed
+    //             + *&image[i][right].rgbtRed
+    //             + *&image[bottom][right].rgbtRed
+    //             + *&image[bottom][j].rgbtRed
+    //             + *&image[bottom][left].rgbtRed
+    //             + *&image[i][left].rgbtRed) / 6.0);
+    //             // + *&image[top][left].rgbtRed)
+    //             *bluePtr = blur_blue;
+    //             *greenPtr = blur_green;
+    //             *redPtr = blur_red;
+
+    //         }
+    //         else if (j == width - 1 && i != height - 1 && i != 0 && j != 0)
+    //         {
+    //             blur_blue = round((*bluePtr
+    //             + *&image[top][j].rgbtBlue
+    //             // + *&image[top][right].rgbtBlue
+    //             // + *&image[i][right].rgbtBlue
+    //             // + *&image[bottom][right].rgbtBlue
+    //             + *&image[bottom][j].rgbtBlue
+    //             + *&image[bottom][left].rgbtBlue
+    //             + *&image[i][left].rgbtBlue
+    //             + *&image[top][left].rgbtBlue) / 6.0);
+
+    //             blur_green = round((*greenPtr
+    //             + *&image[top][j].rgbtGreen
+    //             // + *&image[top][right].rgbtGreen
+    //             // + *&image[i][right].rgbtGreen
+    //             // + *&image[bottom][right].rgbtGreen
+    //             + *&image[bottom][j].rgbtGreen
+    //             + *&image[bottom][left].rgbtGreen
+    //             + *&image[i][left].rgbtGreen
+    //             + *&image[top][left].rgbtGreen) / 6.0);
+
+    //             blur_red = round((*redPtr
+    //             + *&image[top][j].rgbtRed
+    //             // + *&image[top][right].rgbtRed
+    //             // + *&image[i][right].rgbtRed
+    //             // + *&image[bottom][right].rgbtRed
+    //             + *&image[bottom][j].rgbtRed
+    //             + *&image[bottom][left].rgbtRed
+    //             + *&image[i][left].rgbtRed
+    //             + *&image[top][left].rgbtRed) / 6.0);
+    //             *bluePtr = blur_blue;
+    //             *greenPtr = blur_green;
+    //             *redPtr = blur_red;
+    //         }
+
+    //         else if (j == width - 1 && i == height - 1 && i != 0 && j != 0)
+    //         {
+    //             blur_blue = round((*bluePtr
+    //             // + *&image[top][j].rgbtBlue +
+    //             // + *&image[top][right].rgbtBlue
+    //             // + *&image[i][right].rgbtBlue
+    //             // + *&image[bottom][right].rgbtBlue
+    //             + *&image[bottom][j].rgbtBlue
+    //             + *&image[bottom][left].rgbtBlue
+    //             + *&image[i][left].rgbtBlue) / 4.0);
+    //             // + *&image[top][left].rgbtBlue)
+
+    //             blur_green = round((*greenPtr
+    //             // + *&image[top][j].rgbtGreen +
+    //             // + *&image[top][right].rgbtGreen
+    //             // + *&image[i][right].rgbtGreen
+    //             // + *&image[bottom][right].rgbtGreen
+    //             + *&image[bottom][j].rgbtGreen
+    //             + *&image[bottom][left].rgbtGreen
+    //             + *&image[i][left].rgbtGreen) / 4.0);
+    //             // + *&image[top][left].rgbtGreen)
+
+    //             blur_red = round((*redPtr
+    //             // + *&image[top][j].rgbtRed +
+    //             // + *&image[top][right].rgbtRed
+    //             // + *&image[i][right].rgbtRed
+    //             // + *&image[bottom][right].rgbtRed
+    //             + *&image[bottom][j].rgbtRed
+    //             + *&image[bottom][left].rgbtRed
+    //             + *&image[i][left].rgbtRed) / 4.0);
+    //             // + *&image[top][left].rgbtRed)
+    //             *bluePtr = blur_blue;
+    //             *greenPtr = blur_green;
+    //             *redPtr = blur_red;
+    //         }
+    //         // printf("Blue value: %i\n", *bluePtr);
+    //         // printf("Green value: %i\n", *greenPtr);
+    //         // printf("Red value: %i\n", *redPtr);
+
+    //     }
+    // }
     // printf("Blue blur value: %i\n", blur_blue);
     // printf("Green blur value: %i\n", blur_green);
     // printf("Red blur value: %i\n", blur_red);
