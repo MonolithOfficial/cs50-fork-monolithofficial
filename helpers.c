@@ -128,7 +128,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 + *&image[bottom][j].rgbtBlue
                 + *&image[bottom][left].rgbtBlue
                 + *&image[i][left].rgbtBlue
-                + *&image[top][left].rgbtBlue) / 10);
+                + *&image[top][left].rgbtBlue) / 10.1);
 
                 blur_green = round((*greenPtr
                 + *&image[top][j].rgbtGreen +
