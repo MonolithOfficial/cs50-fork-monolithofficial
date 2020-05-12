@@ -148,7 +148,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 + *&image[bottom][j].rgbtRed
                 + *&image[bottom][left].rgbtRed
                 + *&image[i][left].rgbtRed
-                + *&image[top][left].rgbtRed) / 10.0);
+                + *&image[top][left].rgbtRed) / 10.1);
                 *bluePtr = blur_blue;
                 *greenPtr = blur_green;
                 *redPtr = blur_red;
