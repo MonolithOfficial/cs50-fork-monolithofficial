@@ -68,8 +68,8 @@ bool check(const char *word)
         else
         {
             trav = trav->next;
-            printf("%i", hash((*trav).word));
-            printf("%s", trav->word);
+            // printf("%i", hash((*trav).word));
+            // printf("%s", trav->word);
         }
 
     }
@@ -99,7 +99,7 @@ bool load(const char *dictionary)
     for (int i = 0; i < N; i ++)
     {
         table[i] = NULL;
-        printf("%p", table[i]);
+        // printf("%p", table[i]);
     }
     int index = 0;
     char word[LENGTH + 1];
