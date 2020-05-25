@@ -19,7 +19,7 @@ node;
 
 // Number of buckets in hash table
 const unsigned int N = 26;
-int w_count = 0;
+int w_count = 1;
 
 // Hash table
 node *table[N];
