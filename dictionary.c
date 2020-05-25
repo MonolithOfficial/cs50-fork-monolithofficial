@@ -223,6 +223,9 @@ bool unload(void)
         }
         // printf("%p", table[i]);
     }
-    free(fptr);
+    if (fptr != NULL)
+    {
+        free(fptr);
+    }
     return true;
 }
