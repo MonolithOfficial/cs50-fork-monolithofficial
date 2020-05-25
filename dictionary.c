@@ -48,6 +48,11 @@ void push(node *head_ref, node *newNode)
 bool check(const char *word)
 {
     // node *trav = NULL;
+    // char buffer[LENGTH - 1];
+    // for (int d = 0; word[d] != '\0'; d++)
+    // {
+    //     buffer[d] = tolower(word[d]);
+    // }
     int hashed_word = hash(word);
     // printf("%i", hashed_word);
     // printf("%s", table[hashed_word]->word);
@@ -60,7 +65,7 @@ bool check(const char *word)
     {
         // printf("%i", 15);
         // printf("%i", hashed_word);
-        if (strcmp(word, trav->word) == 0)
+        if (strcasecmp(word, trav->word) == 0)
         {
             // break;
             return true;
