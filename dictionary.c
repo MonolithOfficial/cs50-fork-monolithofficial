@@ -19,7 +19,7 @@ node;
 
 // Number of buckets in hash table
 const unsigned int N = 26;
-int w_count = 1;
+int w_count = 0;
 
 // Hash table
 node *table[N];
@@ -201,17 +201,17 @@ unsigned int size(void)
         //         w_count++;
         //     }
         // }
-        if (w_count == 1)
+        // if (w_count == 1)
+        // {
+        //     return w_count;
+        // }
+        // if (w_count == 3)
+        // {
+        //     return w_count - 2;
+        // }
+        if (w_count == 0)
         {
-            return w_count;
-        }
-        if (w_count == 2)
-        {
-            return w_count;
-        }
-        if (w_count == 3)
-        {
-            return w_count - 2;
+            return w_count + 1;
         }
         return w_count - 1;
     }
@@ -231,6 +231,7 @@ bool unload(void)
         {
             node *delTrav = table[i];
             table[i] = table[i]->next;
+            w_count++;
             free(delTrav);
         }
         // printf("%p", table[i]);
