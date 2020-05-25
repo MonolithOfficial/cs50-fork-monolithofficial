@@ -209,9 +209,9 @@ unsigned int size(void)
         // {
         //     return w_count - 2;
         // }
-        if (w_count == 0)
+        if (w_count == 1)
         {
-            return w_count + 1;
+            return w_count;
         }
         return w_count;
     }
