@@ -209,7 +209,7 @@ unsigned int size(void)
         {
             return w_count - 1;
         }
-        return w_count - 2;
+        return w_count;
     }
     else
     {
