@@ -19,7 +19,7 @@ node;
 
 // Number of buckets in hash table
 const unsigned int N = 26;
-int w_count = 0;
+int w_count = 1;
 
 // Hash table
 node *table[N];
@@ -78,6 +78,10 @@ bool check(const char *word)
         }
 
     }
+    if (strcasecmp(word, trav->word) == 0)
+    {
+        return true;
+    }
 
 
     // node *trav = table[5];
@@ -113,6 +117,8 @@ bool load(const char *dictionary)
     FILE *hashFilePtr = fopen("hashdata.txt", "a");
     for (char *c = fgets(word, sizeof(word), fptr); c != NULL; c = fgets(word, sizeof(word), fptr))
     {
+        printf("%s", c);
+        w_count++;
         // if (strcmp(fgets(word, sizeof(word), fptr), "death") == 0)
         // {
         //     return false;
@@ -138,7 +144,6 @@ bool load(const char *dictionary)
         fputs(word, fptr2);
         fputc((char) hash_code, hashFilePtr);
         // printf("%i\n", hash_code);
-        w_count++;
 
         // if (isalpha(c) || (c == '\'' && index > 0))
         // {
