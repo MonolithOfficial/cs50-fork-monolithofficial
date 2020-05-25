@@ -201,6 +201,10 @@ unsigned int size(void)
         //         w_count++;
         //     }
         // }
+        if (w_count == 1)
+        {
+            return w_count;
+        }
         if (w_count == 2)
         {
             return w_count;
