@@ -209,11 +209,11 @@ unsigned int size(void)
         // {
         //     return w_count - 2;
         // }
-        if (w_count == 2)
-        {
-            return w_count - 1;
-        }
-        return w_count;
+        // if (w_count == 2)
+        // {
+        //     return w_count - 1;
+        // }
+        return w_count - 1;
     }
     else
     {
@@ -231,7 +231,6 @@ bool unload(void)
         {
             node *delTrav = table[i];
             table[i] = table[i]->next;
-            w_count++;
             free(delTrav);
         }
         // printf("%p", table[i]);
