@@ -201,7 +201,7 @@ unsigned int size(void)
         //         w_count++;
         //     }
         // }
-        if (w_count == 1)
+        if (w_count == 2)
         {
             return w_count;
         }
