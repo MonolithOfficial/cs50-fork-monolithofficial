@@ -56,10 +56,10 @@ bool check(const char *word)
     int hashed_word = hash(word);
     // printf("%i", hashed_word);
     // printf("%s", table[hashed_word]->word);
-    // if (table[hashed_word] == NULL)
-    // {
-    //     return true;
-    // }
+    if (table[hashed_word] == NULL)
+    {
+        return false;
+    }
     node *trav = table[hashed_word];
     while (trav->next != NULL)
     {
