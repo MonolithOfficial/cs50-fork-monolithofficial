@@ -113,11 +113,11 @@ bool load(const char *dictionary)
     int index = 0;
     char word[LENGTH + 1];
     node *appendingNode = NULL;
-    FILE *fptr2 = fopen("sampletextdemo.txt", "w");
-    FILE *hashFilePtr = fopen("hashdata.txt", "a");
+    // FILE *fptr2 = fopen("sampletextdemo.txt", "w");
+    // FILE *hashFilePtr = fopen("hashdata.txt", "a");
     for (char *c = fgets(word, sizeof(word), fptr); c != NULL; c = fgets(word, sizeof(word), fptr))
     {
-        printf("%s", c);
+        // printf("%s", c);
         w_count++;
         // if (strcmp(fgets(word, sizeof(word), fptr), "death") == 0)
         // {
@@ -141,8 +141,8 @@ bool load(const char *dictionary)
         table[hash_code] = appendingNode;
 
         // table[hash_code] = createNode(word);
-        fputs(word, fptr2);
-        fputc((char) hash_code, hashFilePtr);
+        // fputs(word, fptr2);
+        // fputc((char) hash_code, hashFilePtr);
         // printf("%i\n", hash_code);
 
         // if (isalpha(c) || (c == '\'' && index > 0))
@@ -213,5 +213,16 @@ unsigned int size(void)
 // Unloads dictionary from memory, returning true if successful else false
 bool unload(void)
 {
+    for (int i = 0; i < N; i ++)
+    {
+        while (table[i])
+        {
+            node *delTrav = table[i];
+            table[i] = table[i]->next;
+            free(delTrav);
+        }
+        // printf("%p", table[i]);
+    }
+    free(fptr);
     return true;
 }
