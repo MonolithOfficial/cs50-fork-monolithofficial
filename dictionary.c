@@ -205,7 +205,10 @@ unsigned int size(void)
         {
             return w_count;
         }
-
+        if (w_count == 3)
+        {
+            return w_count - 2;
+        }
         return w_count - 1;
     }
     else
