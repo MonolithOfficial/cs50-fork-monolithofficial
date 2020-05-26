@@ -191,12 +191,17 @@ unsigned int hash(const char *word)
 // Returns number of words in dictionary if loaded else 0 if not yet loaded
 unsigned int size(void)
 {
+    int index = 0;
     if (&load)
     {
 
         for (int g = fgetc(fptr); g != EOF; g = fgetc(fptr))
         {
-            if (g == '\n')
+            if (isalpha(g) || (g == '\'' && index > 0))
+            {
+                index++;
+            }
+            else if (index > 0)
             {
                 w_count++;
             }
