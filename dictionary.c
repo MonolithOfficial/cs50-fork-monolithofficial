@@ -18,7 +18,7 @@ typedef struct node
 node;
 
 // Number of buckets in hash table
-const unsigned int N = 26;
+const unsigned int N = 6000;
 int w_count = 0;
 
 // Hash table
@@ -45,7 +45,7 @@ void push(node *head_ref, node *newNode)
 }
 
 // Returns true if word is in dictionary else false
-bool check(const char *word)
+bool check(char *word)
 {
     // node *trav = NULL;
     // char buffer[LENGTH - 1];
@@ -170,22 +170,20 @@ bool load(const char *dictionary)
 
 // Hashes word to a number
 // HASH FUNCTION BY leonbloy from Stackoverflow
-unsigned int hash(const char *word)
+unsigned long hash(char *word)
 {
-    int sum = 0;
     // char lowerBuffer[LENGTH + 1];
     // for (int i = 0; word[i] != '\0'; i++)
     // {
     //     lowerBuffer[i] = tolower(word[i]);
     // }
-    for (int j = 0; word[j] != '\0'; j++)
-    {
-        if (word[j] != '\n')
-        {
-            sum += tolower(word[j]);
-        }
-    }
-    return sum % N;
+    unsigned long hash = 5381;
+    int c;
+
+    while ((0 != (c = *word++)))
+        hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+
+    return hash % N;
 }
 
 // Returns number of words in dictionary if loaded else 0 if not yet loaded
