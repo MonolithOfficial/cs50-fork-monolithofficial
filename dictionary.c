@@ -19,7 +19,7 @@ node;
 
 // Number of buckets in hash table
 const unsigned int N = 26;
-int w_count = 1;
+int w_count = 0;
 
 // Hash table
 node *table[N];
@@ -118,7 +118,6 @@ bool load(const char *dictionary)
     for (char *c = fgets(word, sizeof(word), fptr); c != NULL; c = fgets(word, sizeof(word), fptr))
     {
         // printf("%s", c);
-        // w_count++;
         // if (strcmp(fgets(word, sizeof(word), fptr), "death") == 0)
         // {
         //     return false;
@@ -127,6 +126,7 @@ bool load(const char *dictionary)
         {
             if (word[k] == '\n')
             {
+                w_count++;
                 word[k] = '\0';
             }
         }
@@ -195,17 +195,17 @@ unsigned int size(void)
     if (&load)
     {
 
-        for (int g = fgetc(fptr); g != EOF; g = fgetc(fptr))
-        {
-            if (isalpha(g) || (g == '\'' && index > 0))
-            {
-                index++;
-            }
-            else if (index > 0)
-            {
-                w_count++;
-            }
-        }
+        // for (int g = fgetc(fptr); g != EOF; g = fgetc(fptr))
+        // {
+        //     if (isalpha(g) || (g == '\'' && index > 0))
+        //     {
+        //         index++;
+        //     }
+        //     else if (index > 0)
+        //     {
+        //         w_count++;
+        //     }
+        // }
         // if (w_count == 1)
         // {
         //     return w_count;
