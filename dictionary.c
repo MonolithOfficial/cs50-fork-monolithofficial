@@ -181,7 +181,7 @@ unsigned long hash(char *word)
     int c;
 
     while ((0 != (c = *word++)))
-        hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+        hash = ((hash << 5) + hash) + tolower(c); /* hash * 33 + c */
 
     return hash % N;
 }
