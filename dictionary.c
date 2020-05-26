@@ -118,7 +118,7 @@ bool load(const char *dictionary)
     for (char *c = fgets(word, sizeof(word), fptr); c != NULL; c = fgets(word, sizeof(word), fptr))
     {
         // printf("%s", c);
-        w_count++;
+        // w_count++;
         // if (strcmp(fgets(word, sizeof(word), fptr), "death") == 0)
         // {
         //     return false;
@@ -194,13 +194,13 @@ unsigned int size(void)
     if (&load)
     {
 
-        // for (int g = fgetc(fptr); g != EOF; g = fgetc(fptr))
-        // {
-        //     if (g == '\n')
-        //     {
-        //         w_count++;
-        //     }
-        // }
+        for (int g = fgetc(fptr); g != EOF; g = fgetc(fptr))
+        {
+            if (g == '\n')
+            {
+                w_count++;
+            }
+        }
         // if (w_count == 1)
         // {
         //     return w_count;
@@ -213,7 +213,7 @@ unsigned int size(void)
         // {
         //     return w_count - 1;
         // }
-        return w_count - 1;
+        return w_count;
     }
     else
     {
