@@ -163,7 +163,7 @@ tatc = tatc(dna_file_read)
 gaaa = gaaa(dna_file_read)
 tctg = tctg(dna_file_read)
 
-print(agatc, ttttttct, aatg, tctag, gata, tatc, gaaa, tctg)
+# print(agatc, ttttttct, aatg, tctag, gata, tatc, gaaa, tctg)
 
 # print(f"{agatc(dna_file_read)},{aatg(dna_file_read)},{tatc(dna_file_read)}")
 # if f"{agatc(dna_file_read)},{ttttttct(dna_file_read)},{aatg(dna_file_read)},{tctag(dna_file_read)},{gata(dna_file_read)},{tatc(dna_file_read)},{gaaa(dna_file_read)},{tctag(dna_file_read)}" in csv_file_read:
