@@ -1,0 +1,146 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+#navbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    width: 90%;
+    height: 30px;
+    margin: auto;
+    border-bottom: 5px solid grey;
+    border-right: 5px solid grey;
+    border-left: 5px solid grey;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.navLogo {
+    position: absolute;
+    left: 20px;
+    font-style: italic;
+}
+#navbar ul {
+    margin-top: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    list-style: none;
+    width: 45vw;
+    margin: auto;
+}
+
+#navbar ul li {
+    margin: 10px;
+}
+#navbar ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+#navbar ul li a:hover {
+    color: grey;
+}
+
+#wrapper{
+    background-color: white;
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    border: 5px solid grey;
+    border-radius: 20px;
+}
+.mainTitle {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    color: black;
+}
+.mainSubTitle{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+.desc {
+    width: 60vw;
+    text-align: start;
+    color: black;
+    margin: auto;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#wrapper img {
+    display: block;
+    margin: auto;
+    width: 45vw;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: 0.5s;
+}
+#wrapper img:hover {
+    transform: scale(1.05);
+}
+
+#similarArticles {
+    width: 80%;
+    margin: auto;
+    display: flex;
+}
+#similarArticles img {
+    border-radius: 20px;
+    width: 10vw;
+    height: 10vw;
+}
+
+@media (max-width: 1360px){
+    .navLogo{
+        visibility: hidden;
+    }
+}
+@media (max-width: 768px){
+    .mainSubTitle {
+        margin-top: 0;
+    }
+    #navbar {
+        width: 100vw;
+        border: hidden;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    #wrapper{
+        border: hidden;
+        width: 100%;
+        margin: 0;
+        margin-top: 0;
+        padding-bottom: 20px;
+        border-radius: 0;
+    }
+    .desc {
+        width: 98vw;
+    }
+    #wrapper img {
+        width: 95vw;
+        padding-bottom: 0;
+    }
+    #wrapper img:hover {
+        transform: none;
+    }
+
+}
+
