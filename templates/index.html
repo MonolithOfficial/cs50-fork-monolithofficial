@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    STONKS
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>TOTAL</th>
+        </tr>
+        {% for row in rows %}
+            <tr>
+                <td>{{ row["symbol"] }}</td>
+                <td>{{ row["name"] }}</td>
+                <td>{{ row["SUM(qty)"] }}</td>
+                <td>{{ row["price"] }}</td>
+                <td>{{ row["price"] * row["SUM(qty)"] }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td>CASH</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>${{ user_cash }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="font-weight: bold;">${{ total }}</td>
+        </tr>
+    </table>
+{% endblock %}

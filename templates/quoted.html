@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quoted
+{% endblock %}
+
+
+{% block main %}
+    <p>
+        A share of {{ api_post["name"] }} ({{ api_post["symbol"] }}) costs ${{ api_post["price"] }}.
+    </p>
+{% endblock %}
